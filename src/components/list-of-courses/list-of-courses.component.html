@@ -1,0 +1,40 @@
+<!-- <button (click)="myCourses()">my courses</button>
+ <div>gggggggggggg</div>
+<div *ngIf="isTeacher">
+    <button (click)="addCourse()">ADD COURSE</button>
+    <button (click)="deleteCourse(courseId)">DELETE COURSE</button>
+  </div>
+  
+  <div *ngFor="let course of courses">
+    <div>
+      <h3>{{ course.title }}</h3>
+      <button (click)="updateCourse(course.id)">UPDATE COURSE</button>
+    </div>
+  </div> -->
+  <mat-toolbar >
+    <span>Courses</span>
+  </mat-toolbar>
+  
+  <div class="course-list">
+    @for ( course of courses;track  course.id){
+    <mat-card class="course-card" appHighlightLesson highlightColor="#f0f0f0">
+      <mat-card-header>
+       <button mat-button (click)="courseDetailes(course.id)"> <mat-card-title >{{ course.title }}</mat-card-title></button>
+        
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ course.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        @if(!enrolledCourseIds.includes(course.id))
+      { <button mat-button (click)="enroll(course.id)">Enroll</button>}
+       @else{ <button mat-button (click)="leave(course.id)">Leave</button>}
+      </mat-card-actions>
+    </mat-card>
+}
+@empty {
+    <p>No courses available</p>
+  
+}
+  </div>
+  
