@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -10,6 +10,18 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:3000/api/auth';
   constructor(private http: HttpClient) { }
+  getHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return token
+    ? new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    : new HttpHeaders();  }
+
+  getUserId(): number | null {
+    
+    const userId = localStorage.getItem('userId');
+    return userId ? JSON.parse(userId) : null;
+  }
+
 
   register(name: string, email: string, password: string, role: string): Observable<any> {
     const url = `${this.apiUrl}/register`;

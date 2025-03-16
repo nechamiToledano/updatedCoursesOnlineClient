@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class CourseService {
   
   constructor(private http: HttpClient, private authService: AuthService) {}
   private getHeaders(): HttpHeaders {
-    return this.userService.getHeaders()
+    return this.authService.getHeaders()
 
   }
 
