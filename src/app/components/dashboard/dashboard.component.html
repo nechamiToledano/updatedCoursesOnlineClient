@@ -1,0 +1,40 @@
+<div class="dashboard">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>📚Learning Platform</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        @if(isLoggedIn){
+        <p >Manage your courses and track progress easily.</p>}
+        @else
+       { <p >Welcome! Please log in to access all features.</p>}
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+        <button mat-button color="accent" [routerLink]="['/']">
+          🏠 Home
+        </button>
+        @if(isLoggedIn){
+          
+        <button  mat-button color="accent" [routerLink]="['/list-of-courses']">
+          📚 Courses
+        </button>
+        <button  mat-button color="accent" (click)="logout()">
+          🚪 Logout
+        </button>
+        }
+        @else {
+  
+          <button mat-button color="accent" [routerLink]="['/auth']">
+            🔑 Login / Register
+          </button>
+        }
+  
+  @if(isTeacher){
+        <button  mat-button color="accent" [routerLink]="['/course-management']">
+          🏫 Manage Courses
+        </button>
+      }
+      </mat-nav-list>
+    </mat-card>
+  </div>

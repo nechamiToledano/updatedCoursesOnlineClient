@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>{{ data.course?.id ? 'Edit Course' : 'Add New Course' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="courseForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Course Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter course title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Course Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Enter course description" rows="4"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" class="cancel-btn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()" class="save-btn"[disabled]="courseForm.invalid">Save</button>
+</mat-dialog-actions>

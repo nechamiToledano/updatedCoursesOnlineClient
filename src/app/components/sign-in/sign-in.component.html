@@ -1,0 +1,36 @@
+
+
+<!-- <form [formGroup]="signInForm">
+    <input type="email" formControlName="email" />
+    <input type="password" formControlName="password" />
+    <button type="submit">Sign in</button>
+</form> -->
+
+
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <label for="email">Email:</label>
+    <input type="text" formControlName="email" name="email" id="email" placeholder="your email" /> 
+
+    <label for="password">Password:</label>
+    <input type="password" formControlName="password" name="password" id="password" placeholder="your password" /> 
+    
+    @if (f['email'] && f['email'].errors && f['email'].touched) {
+        @if (f['email'].errors['required']) {
+            <div>email is required</div>
+        }
+        @if (f['email'].errors['email']) {
+            <div>email must be a valid email address</div>
+        }
+    }
+
+    @if (f['password'] && f['password'].errors && f['password'].touched) {
+        @if (f['password'].errors['required']) {
+            <div>Password is required</div>
+        }
+        @if (f['password'].errors['minlength']) {
+            <div>Password must be at least 6 characters</div>
+        }
+    }
+
+    <button type="submit">Sign in</button>
+</form>
